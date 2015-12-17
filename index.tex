@@ -1,0 +1,80 @@
+\documentclass[a4paper,11pt,extrafontsizes,oneside,book]{memoir}
+\usepackage{amsmath}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{hypcap}
+
+% Times New Roman package
+\usepackage{newtxtext}
+\usepackage{newtxmath}
+\usepackage{graphicx}
+\usepackage{tikz} % diagram framework by Till Tantau
+\usetikzlibrary{shapes,arrows}
+
+%\usepackage{afterpage}
+\usepackage{rotating} % tabel dlm orientasi landscape
+\usepackage{pdfpages} % include pdf file
+\usepackage{import}
+% arabic
+ \usepackage{arabi} install texlive-lang-arabic
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[arabic,english]{babel}
+
+% disini dilakukan definisi2 penyesuaian
+\OnehalfSpacing
+%\settrims{1cm}{1cm}
+%\setheadfoot{}{}
+
+% kita gunakan pdf maka setup
+\fixpdflayout
+
+\hypersetup{colorlinks=true,bookmarks=true}
+% hook dari memoir ini digunakan untuk mengisi
+% logo institusi dan menulis namanya di cover depan
+\renewcommand{\maketitlehookd}{%
+\vskip 4.5em
+\begin{figure}[h] % TODO: insert image disini
+\centering
+\includegraphics[scale=0.4]{logo-untel}
+\end{figure}
+\begin{center}
+\vfill
+\par
+\Large{Graduate School of Informatics\\Telkom University}
+\selectlanguage{arabic}
+\Huge\textsc{اللغة العربية}
+\selectlanguage{english}
+\end{center}}
+
+% nama referensi 
+\renewcommand*{\bibname}{REFERENCES}
+
+% TODO: sttappendix
+% lihat page 367 memman
+\begin{document}
+% setup Margins
+%\setlrmargins{}{}{}
+\setulmargins{4cm}{*}{*}
+\checkandfixthelayout
+
+\frontmatter
+%\includepdf{cover}
+\include{preliminary}
+
+%\setulmargins{1cm}{*}{*}
+%\checkandfixthelayout
+
+\mainmatter
+\setsecnumdepth{subsection}
+\makeheadrule{headings}{\textwidth}{0.8pt}   % berarti page setelah chapter, style-nya headings
+\import{1/}{chap}
+\import{2/}{chap}
+
+\backmatter
+\appendix
+\include{appendix/A}
+\bibliographystyle{alpha}
+\bibliography{ref}
+% file ini cuma jadi induk
+\end{document}
